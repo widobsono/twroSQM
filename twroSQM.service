@@ -1,0 +1,16 @@
+[Unit]
+Description=Start the TwRO SQM script.
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /home/pi/twroSQM/__main__.py
+RemainAfterExit=true
+ExecStop=/usr/bin/pkill -f __main__.py
+StandardOutput=journal
+StandardError=journal
+User=pi
+Group=pi
+
+[Install]
+WantedBy=multi-user.target
