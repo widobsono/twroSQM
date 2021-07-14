@@ -668,7 +668,9 @@ class SQMLU(SQM):
             self.addr = config._device_addr
             self.bauds = 115200
             self.start_connection()
-        except:
+        except Exception, e:
+            print('SQMLU Error was:')
+            print(e)
             print('Trying auto device address ...')
             self.addr = self.search()
             print('Found address %s ... ' %str(self.addr))
@@ -694,7 +696,7 @@ class SQMLU(SQM):
         Photometer search.
         Name of the port depends on the platform.
         '''
-        ports_unix = ['/dev/ttyUSB'+str(num) for num in range(100)]
+        ports_unix = ['/dev/ttyUSB'+str(num) for num in range(10)]
         ports_win  = ['COM'+str(num) for num in range(100)]
 
         os_in_use = sys.platform
@@ -707,12 +709,30 @@ class SQMLU(SQM):
             ports = ports_win
 
         used_port = None
+        # for port in ports:
+        #     print('Trying fixed device address %s ... ' %str(port))
+        #     conn_test = serial.Serial(port, 115200, timeout=2)
+        #     conn_test.write('ix')
+        #     if conn_test.readline()[0] == 'i':
+        #         used_port = port
+        #         break
+
         for port in ports:
-            conn_test = serial.Serial(port, 115200, timeout=1)
-            conn_test.write('ix')
-            if conn_test.readline()[0] == 'i':
+            try:
+                print('Trying fixed device address %s ... ' %str(port))
+                conn_test = serial.Serial(port, 115200, timeout=2)
+                conn_test.write('ix')
+                print('Check 1')
                 used_port = port
                 break
+                if conn_test.readline()[0] == 'i':
+                    print('connTest')
+                    used_port = port
+                    break
+                # do stuff
+                time.sleep(1)
+            except:
+                pass
 
         try:
             assert(used_port!=None)
@@ -742,6 +762,13 @@ class SQMLU(SQM):
         ''' Connection reset '''
         #print('Trying to reset connection')
         self.close_connection()
+        self.start_connection()
+
+    def reset_conn(self):
+        ''' Connection reset '''
+        #print('Trying to reset connection')
+        self.close_connection()
+        self.addr = self.search()
         self.start_connection()
 
     def read_buffer(self):

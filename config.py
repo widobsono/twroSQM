@@ -38,7 +38,7 @@ SITE location
 -------------
 '''
 
-_observatory_name = 'GURUGU'
+_observatory_name = 'Imahnoong'
 _observatory_latitude  = -6.447862
 _observatory_longitude = 107.364992
 _observatory_altitude  = 1300
@@ -49,7 +49,7 @@ _device_type = 'SQM_LU'   # Device type in the Header
 _device_id = _device_type + '-' + _observatory_name # Long Device lame
 _device_locationname = 'Observatorium Imahnoong - Lembang'         # Device location in the world
 _data_supplier = 'M Arifin D - Imahnoong'  # Data supplier (contact)
-_device_addr = '/dev/ttyUSB0'  # Default IP address of the ethernet device (if not automatically found)
+_device_addr = '/dev/ttyUSB1'  # Default IP address of the ethernet device (if not automatically found)
 _measures_to_promediate = 5       # Take the mean of N measures
 _delay_between_measures = 5    # Delay between two measures. In seconds.
 _cache_measures = 5             # Get X measures before writing on screen/file

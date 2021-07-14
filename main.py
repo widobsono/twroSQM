@@ -136,7 +136,9 @@ def loop():
                     os.system('reboot.bat')
 
                 time.sleep(1)
-                mydevice.reset_device()
+                #mydevice.search()
+                #mydevice.reset_device()
+                mydevice.reset_conn()
 
             formatted_data = mydevice.format_content(\
                 timeutc_mean,timelocal_mean,temp_sensor,\
