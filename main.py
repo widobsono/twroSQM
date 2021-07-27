@@ -44,7 +44,7 @@ config = settings.GlobalConfig.config
 
 ### Load now the rest of the modules
 from read import *
-import plot
+#import plot
 
 '''
 This import section is only for software build purposes.
@@ -109,6 +109,8 @@ def loop():
         ''' The programs works as a daemon '''
         utcdt = mydevice.read_datetime()
         #print (str(mydevice.local_datetime(utcdt))),
+        #change if clause to time function, for daytime observaton,
+        #doesn't have to wait nighttime
         if mydevice.is_nighttime(observ):
             # If we are in a new night, create the new file.
             config._send_to_datacenter = False ### Not enabled by default
@@ -158,7 +160,9 @@ def loop():
 
             if niter%config._plot_each == 0:
                 ''' Each X minutes, plot a new graph '''
-                try: plot.make_plot(send_emails=False,write_stats=False)
+                try:
+                    print('Try Plotting = False')
+                    #plot.make_plot(send_emails=False,write_stats=False)
                 except:
                     print('Warning: Error plotting data.')
                     print(sys.exc_info())
@@ -179,13 +183,17 @@ def loop():
             if niter>0:
                 mydevice.flush_cache()
                 if config._send_data_by_email==True:
-                    try: plot.make_plot(send_emails=True,write_stats=True)
+                    try:
+                        print('Plot = False')
+                        #plot.make_plot(send_emails=True,write_stats=True)
                     except:
                         print('Warning: Error plotting data / sending email.')
                         print(sys.exc_info())
 
                 else:
-                    try: plot.make_plot(send_emails=False,write_stats=True)
+                    try:
+                        print('Plot = False')
+                        #plot.make_plot(send_emails=False,write_stats=True)
                     except:
                         print('Warning: Error plotting data.')
                         print(sys.exc_info())
