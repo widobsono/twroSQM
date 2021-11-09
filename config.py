@@ -38,7 +38,7 @@ SITE location
 -------------
 '''
 
-_observatory_name = 'Imahnoong'
+_observatory_name = 'BMKG A'
 _observatory_latitude  = -6.447862
 _observatory_longitude = 107.364992
 _observatory_altitude  = 1300
@@ -47,8 +47,8 @@ _observatory_horizon   = 5     # If Sun is below this altitude, the program will
 _device_shorttype = 'SQM' # Device STR in the file
 _device_type = 'SQM_LU'   # Device type in the Header
 _device_id = _device_type + '-' + _observatory_name # Long Device lame
-_device_locationname = 'Observatorium Imahnoong - Lembang'         # Device location in the world
-_data_supplier = 'M Arifin D - Imahnoong'  # Data supplier (contact)
+_device_locationname = 'Stasiun Pengamatan A'         # Device location in the world
+_data_supplier = 'Bidang Fajar'  # Data supplier (contact)
 _device_addr = '/dev/ttyUSB1'  # Default IP address of the ethernet device (if not automatically found)
 _measures_to_promediate = 5       # Take the mean of N measures
 _delay_between_measures = 5    # Delay between two measures. In seconds.
@@ -68,7 +68,7 @@ _offset_calibration = -0.11  # magnitude = read_magnitude + offset
 _reboot_on_connlost = False  # Reboot if we loose connection
 
 # Monthly (permanent) data
-monthly_data_directory = "/media/arifin/Active/0A Binar Imahnoong/TwRO/source_code/twroSQM/twroData/"
+monthly_data_directory = "/home/pi/sqmDATA"
 # Daily (permanent) data
 daily_data_directory = monthly_data_directory+"/harian/"
 # Daily (permanent) graph
